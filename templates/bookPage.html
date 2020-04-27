@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>Some information about {{Title}}</h1>
+        <style>
+            #rating{
+                width:200px;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>ISBN : {{ISBN}}</li>
+            <li>Title : {{Title}}</li>
+            <li>Author : {{Author}}</li>
+            <li>Year : {{Year}}</li>
+            <li>Average Rating : {{averageRating}}</li>
+            <li>No. of Reviews : {{reviewCount}}</li>
+            <li>Reviews left by Users : </li>
+            <ul>
+                {%for reviewResult in reviewResults%}
+                <li>{{reviewResult['reviews']}}</li>
+                {%endfor%}
+            </ul>
+        </ul>
+        <h3 style = "color:red;">User Reviews : </h3>
+        
+        <h5>Add Your own Review here :</h5>
+        {%for ISBN,Title,Author,Year in results%}
+        <form action = "{{url_for('addReview')}}" method="POST">
+            <input type="radio" id="0" name="rating" value="0">
+            <label for="0">0</label><br>
+             <input type="radio" id="1" name="rating" value="1">
+            <label for="1">1</label><br>
+            <input type="radio" id="2" name="rating" value="2">
+            <label for="0">2</label><br>
+             <input type="radio" id="3" name="rating" value="3">
+            <label for="1">3</label><br>
+            <input type="radio" id="4" name="rating" value="4">
+            <label for="0">4</label><br>
+             <input type="radio" id="5" name="rating" value="5">
+            <label for="1">5</label><br>
+                       
+            <input type = "text" placeholder="Enter your review" name = "review">
+            <button>Submit Review</button>
+          </form>
+          {%endfor%}
+        
+
+    </body>
+    <footer>
+        <a href="{{url_for('logout')}}">Logout</a>
+    </footer>
+</html>

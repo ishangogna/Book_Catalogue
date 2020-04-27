@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <p>Authored by {{searchElement}}:</p> 
+    </head>
+    <body>
+        {%for ISBN,Title,Author,Year in results%}
+        <ul>
+            <li><a href="{{url_for('lookup',searchElement=ISBN)}}">{{Title}}</a></li>
+        </ul>
+        {%endfor%}
+
+        
+    </body>
+    <footer>
+        <a href="{{url_for('logout')}}">Logout</a>
+    </footer>
+</html>

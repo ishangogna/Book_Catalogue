@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <body>
+            Welcome {{user1}},Login Successful!
+
+            {%for result in results%}
+            {{result}}
+            {% endfor %}
+        </body>
+    </head>
+    <footer>
+        <a href="{{url_for('logout')}}">Logout</a>
+    </footer>
+</html>
