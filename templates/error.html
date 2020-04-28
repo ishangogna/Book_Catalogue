@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
+{%extends "layout.html"%}
 
-    </head>
-<body>
-    {{Message}}<br>
+{%block body%}
+
+
+    <h6 style = "color:red;">{{Message}}</h6>
     
-    <a href = "{{url_for('index')}}">Main page</a>
-</body>
-    </html>
+
+{% endblock %}

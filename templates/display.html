@@ -1,18 +1,26 @@
-<!DOCTYPE html>
-<html>
-    <head>
-       <p>Authored by {{searchElement}}:</p> 
-    </head>
-    <body>
+{%extends "layout.html"%}
+
+{%block body%}
+
+
         {%for ISBN,Title,Author,Year in results%}
-        <ul>
-            <li><a href="{{url_for('lookup',searchElement=ISBN)}}">{{Title}}</a></li>
-        </ul>
+       
+        <!-- <ul>
+            <li><a href="{{url_for('lookup',searchElement=ISBN)}}">ISBN : {{ISBN}}<br>Title : {{Title}}<br>Author: {{Author}}<br>Year: {{Year}}</a></li>
+        </ul> --> 
+        <div class = "container">
+
+            <div class = "row">
+                <div class = "col">
+                    <ul>
+                        <li><a href="{{url_for('lookup',searchElement=ISBN)}}">ISBN : {{ISBN}}<br>Title : {{Title}}<br>Author: {{Author}}<br>Year: {{Year}}</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
         {%endfor%}
 
         
-    </body>
-    <footer>
-        <a href="{{url_for('logout')}}">Logout</a>
-    </footer>
-</html>
+
+{% endblock %}

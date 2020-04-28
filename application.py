@@ -4,9 +4,8 @@ import requests
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-
+DATABASE_URL = "Your Database URI here"
 app = Flask(__name__)
-DATABASE_URL = "Your DATABASE URI here"
 app.secret_key= "Project1"
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 db = scoped_session(sessionmaker(bind=engine))
@@ -25,6 +24,7 @@ def signup():
     user = request.form.get("user")
     if not request.form.get("user"):
         return render_template("Error.html",Message = "Username is mandatory for signup.")
+    pwd = request.form.get("pwd")
     if not request.form.get("pwd"):
         return render_template("Error.html",Message = "Password is mandatory for signup.")
     
@@ -36,7 +36,7 @@ def signup():
         db.commit()
         return render_template("signupSuccess.html")
 
-@app.route("/success.html", methods = ["POST"])
+@app.route("/success.html", methods = ["POST","GET"])
 def login():
     user = request.form.get("user")
     pwd = request.form.get("pwd")
@@ -55,7 +55,9 @@ def login():
 @app.route("/display.html",methods=["POST"])
 def search():
     searchElement = request.form.get("searchElement")
-    results = db.execute("SELECT * FROM bookInfo WHERE Author = :Author",{"Author":searchElement}).fetchall()
+    query = "%" + searchElement + "%"
+    query = query
+    results = db.execute("SELECT * FROM bookInfo WHERE Author LIKE :query OR ISBN LIKE :query OR Title LIKE :query",{"query":query}).fetchall()
     if results:
         return render_template("display.html",results = results,searchElement=searchElement)
     else:

@@ -1,21 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-  <h1 style="text-align: center; font-weight: bold;">Welcome to Ishan's Book Store!</h1>
+{%extends "layout.html"%}
+{%block body%}
 
-<h3 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Login here.</h3>
-  <form action = "{{url_for('login')}}" method="POST">
-    <input type="text" placeholder="Your Username" name = "user">
-    <input type = "password" placeholder="Your Password" name = "pwd">
-    <button>Login!</button>
-  </form><br>
-  <a href = "{{url_for('register')}}">New? Sign up!</a>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-sm-12">
+      <img src="../static/booksFinal.jpg">
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <div id = "loginWindow">
+        <h3 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Login here.</h3>
+          <form action = "{{url_for('login')}}" method="POST">
+            <input type="text" placeholder="Your Username" name = "user">
+            <input type = "password" placeholder="Your Password" name = "pwd">
+            <button>Login!</button>
+          </form><br>
+          <a href = "{{url_for('register')}}">New? Sign up!</a>
+        
+        </div>
+    </div>
+  </div>
+</div>
+          
+          
+{% endblock %}
 
-
-
-</body>
-
-
-</html>
